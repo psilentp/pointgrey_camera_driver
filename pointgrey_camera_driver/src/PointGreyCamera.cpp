@@ -727,6 +727,7 @@ bool PointGreyCamera::setExternalTrigger(bool &enable, std::string &mode, std::s
   else if(tmode.compare("mode1") == 0)
   {
     triggerMode.mode = 1;
+    triggerMode.parameter = 0;
   }
   else if(tmode.compare("mode3") == 0)
   {
@@ -762,7 +763,7 @@ bool PointGreyCamera::setExternalTrigger(bool &enable, std::string &mode, std::s
     triggerMode.source = pin;
   }
 
-  triggerMode.polarity = polarityHigh;
+  triggerMode.polarity = int(polarityHigh);
 
   error = cam_.SetTriggerMode(&triggerMode);
   PointGreyCamera::handleError("PointGreyCamera::setExternalTrigger Could not set trigger mode.", error);
